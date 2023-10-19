@@ -34,14 +34,23 @@
  align-items: center;
  align-content: center;
  justify-content: center;
- width: 50%;
- min-height: 400px;
- max-height: fit-content;
- border: 3px solid rgb(152, 31, 31);
+ width: 27%;
+ height: 500px;
+
+ border: 2px solid rgb(152, 31, 31);
  border-radius: 10px;
  text-align: center;
- margin-top: 0px ;
- margin: 10%;
+ margin-top: 5px ;
+ margin: 4px;
+}
+
+.data {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+  margin: 30px;
+	
 }
 
 @keyframes App-logo-spin {
@@ -51,4 +60,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Add-product {
+    border: #282c34 solid 1px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: space-evenly;
+  
+
 }
