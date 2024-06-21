@@ -54,7 +54,7 @@ function App() {
                                 value={value}
                             /> 
                         </div>
-                        : <h1>sorry No products available !</h1> 
+                        : <h1>sorry §§ No products available !</h1> 
                     : <h1>loading...</h1> 
             }
         </div>
