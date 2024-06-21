@@ -12,9 +12,8 @@ export const insertProducts = createAsyncThunk('products/insertProducts',
     async (productData, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            await axios.post('http://localhost:3001/create', productData)
-                .then((resp) => console.log('product added: ', resp)); 
-            
+            axios.post('http://localhost:3001/create', productData)
+                .then(() => console.log('product added to db'));
             return productData;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -93,7 +92,8 @@ export const productSlice = createSlice({
 
         builder.addCase(insertProducts.fulfilled, (state, action) => {
             state.value.push(action.payload);
-            console.log('fulfilled', state.value);
+            console.log('fulfilled', action.payload);
+            state.loading = false;
         }),
 
         builder.addCase(insertProducts.rejected, (state) => {

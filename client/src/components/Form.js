@@ -1,11 +1,9 @@
-import React, { useRef,useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProducts, insertProducts } from '../features/ProductSlice';
 
 const Form = () => {
     const dispatch = useDispatch();
-    const [file, setFile] = useState();
-    const [fileName, setFileName] = useState('');
 
     const title = useRef(null);
     const description = useRef(null);
@@ -17,10 +15,7 @@ const Form = () => {
     }, [dispatch]);
 
     const addProduct = async () => {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('fileName', fileName);
-
+     
         const productData = {
             title: title.current.value,
             description: description.current.value,
@@ -28,9 +23,9 @@ const Form = () => {
             category : category.current.value,
         };  
 
-        console.log('product: ', formData);
+        console.log('product: ', productData);
 
-        // dispatch(insertProducts(productData));
+        dispatch(insertProducts(productData));
 
       
         title.current.value = null;
@@ -40,11 +35,7 @@ const Form = () => {
 
     };
 
-    const saveFile = (e) => {
-        setFile(e.target.files[0]);
-        setFileName(e.target.files[0].name);
-    };
-
+   
     // const handleFileUpload = async () => {
     //     const formData = new FormData();
     //     formData.append('file', file);
@@ -93,10 +84,7 @@ const Form = () => {
                         Add product
                 </button>
                
-                <input 
-                    type='file' 
-                    onChange={saveFile} >
-                </input>
+            
            
                 {/* <button 
                     onClick={handleFileUpload}>

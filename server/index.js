@@ -45,28 +45,27 @@ var upload = multer({
     storage: storage
 });
 
-app.post("/create", upload.single('file'), (req, res) => {
+app.post("/create", (req, res) => {
     const brand = req.body.brand;
     const description = req.body.description;
     const category = req.body.category;
     const title = req.body.title;
-    const image = req.file.filename;
 
-    console.log('request file: ', req.file)
+    console.log('request file: ', req.body)
 
-    // const sql = 'INSERT INTO products (brand, category, description, title ) VALUES (?,?,?,?) INSERT INTO images (imgname, product_id) VALUES (?, LAST_INSERT_ID())';
+    const sql = 'INSERT INTO products (title, description, brand, category ) VALUES (?,?,?,?)';
     
-    // db.query(
-    //     sql,
-    //     [ brand, category, description,  title, image ],
-    //     (err, result) => {
-    //         if (err) {
-    //             console.log('erreur', err);
-    //         } else {
-    //             res.send("values inserted !")
-    //         }
-    //     }
-    // );
+    db.query(
+        sql,
+        [ title, description, brand, category],
+        (err, result) => {
+            if (err) {
+                console.log('erreur', err);
+            } else {
+                res.send("values inserted !")
+            }
+        }
+    );
     
 })
 
