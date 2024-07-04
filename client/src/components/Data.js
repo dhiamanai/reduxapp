@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SimpleImageSlider from 'react-simple-image-slider';
 import { updateProduct, deleteProduct } from '../features/ProductSlice';
 import { useDispatch } from 'react-redux';
 
@@ -36,14 +35,7 @@ const Data = ({ loading, value }) => {
                 { 
                     element.images?.length > 1 && 
         <center>
-            <SimpleImageSlider
-                width={400}
-                height={200}
-                images={element.images}
-                showBullets={true}
-                showNavs={true}
-                navSize={40}
-            />
+           
         </center>
                 }
                 <h4>
@@ -64,6 +56,7 @@ const Data = ({ loading, value }) => {
                             placeholder={element.brand}
                             onChange={(e) => { setBrand(e.target.value); }}
                         ></input>
+                      
                         <button
                             onClick={() => { uProduct(element.id, updtitle, updDescription, updBrand); }}
                         >

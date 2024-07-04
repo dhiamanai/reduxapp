@@ -2,17 +2,18 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
-export const getProducts = createAsyncThunk('products/getProducts',  async () => {
-    const res = await axios.get('http://localhost:3001/getdata');
-    console.log('resp', res.data);
-    return await res.data;
-});
+export const getProducts = createAsyncThunk('products/getProducts', 
+    async () => {
+        const res = await axios.get('http://localhost:3001/getdata');
+        console.log('resp', res.data);
+        return  res.data;
+    });
 
 export const insertProducts = createAsyncThunk('products/insertProducts', 
     async (productData, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            axios.post('http://localhost:3001/create', productData)
+            await axios.post('http://localhost:3001/create', productData)
                 .then(() => console.log('product added to db'));
             return productData;
         } catch (error) {
@@ -25,7 +26,7 @@ export const updateProduct = createAsyncThunk('products/updateProduct',
     async (data, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            axios.put('http://localhost:3001/update', data)
+            await axios.put('http://localhost:3001/update', data)
                 .then(() => console.log('product updated'));
             return data;
         } catch (error) {
@@ -37,7 +38,7 @@ export const deleteProduct = createAsyncThunk('products/deleteproduct',
     async (id, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            axios.delete(`http://localhost:3001/delete/${id}`)
+            await axios.delete(`http://localhost:3001/delete/${id}`)
                 .then(() => console.log('product deleted'));
         } catch (error) {
             return rejectWithValue('erreur ',error.message);
@@ -90,9 +91,9 @@ export const productSlice = createSlice({
         builder.addCase(insertProducts.pending, () => {
         }),
 
-        builder.addCase(insertProducts.fulfilled, (state, action) => {
-            state.value.push(action.payload);
-            console.log('fulfilled', action.payload);
+        builder.addCase(insertProducts.fulfilled, (state) => {
+            // state.value.push(action.payload);
+            // console.log('fulfilled', action.payload);
             state.loading = false;
         }),
 

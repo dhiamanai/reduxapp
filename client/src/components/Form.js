@@ -1,55 +1,42 @@
-import React, { useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getProducts, insertProducts } from '../features/ProductSlice';
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
 
 const Form = () => {
-    const dispatch = useDispatch();
-
+   
     const title = useRef(null);
     const description = useRef(null);
     const brand = useRef(null);
     const category = useRef(null);
+    const [image, setImage] = useState(null);
 
-    useEffect(() => {
-        dispatch(getProducts()); 
-    }, [dispatch]);
+    const addProduct = () => {
 
-    const addProduct = async () => {
+        const formData = new FormData();
+        formData.append('title', title.current.value);
+        formData.append('description', description.current.value);
+        formData.append('brand', brand.current.value);
+        formData.append('category', category.current.value);
+        formData.append('image', image);
+
+        try {
+            axios.post('http://localhost:3001/create', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }).then(res => console.log('Données envoyées au serveur avec succès', res));
      
-        const productData = {
-            title: title.current.value,
-            description: description.current.value,
-            brand : brand.current.value,
-            category : category.current.value,
-        };  
+        } catch (error) {
+            console.error('Erreur:', error);
+        }
 
-        console.log('product: ', productData);
-
-        dispatch(insertProducts(productData));
+        // dispatch(insertProducts(productData));
 
       
         title.current.value = null;
         description.current.value = null; 
         brand.current.value = null; 
         category.current.value = null; 
-
     };
-
-   
-    // const handleFileUpload = async () => {
-    //     const formData = new FormData();
-    //     formData.append('file', file);
-    //     formData.append('fileName', fileName);
-    //     try {
-    //         await axios.post(
-    //             'http://localhost:3001/upload',
-    //             formData
-    //         ).then(res => console.log(res));
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
 
     return (  
         <div className='Add-user' >
@@ -77,19 +64,16 @@ const Form = () => {
                         placeholder='title...' 
                         ref={title}>
                     </input>
-             
-                </div>
-                <button 
-                    onClick={addProduct}>
+
+                    select an image
+
+                    <input type="file" onChange={ (e) => setImage(e.target.files[0])} />
+
+                    <button 
+                        onClick={addProduct}>
                         Add product
-                </button>
-               
-            
-           
-                {/* <button 
-                    onClick={handleFileUpload}>
-                        upload
-                </button> */}
+                    </button>
+                </div>
            
             </details>
 
