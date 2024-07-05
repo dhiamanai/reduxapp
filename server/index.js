@@ -19,18 +19,6 @@ const db = mysql.createConnection({
     database:"reactredux"
 });
 
-// brand,
-// category,
-// description,  
-// discountPercentage,
-// id,
-// images,
-// price,
-// rating,
-// stock,
-// thumbnail,
-// title,
-
 //! Use of Multer
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -45,19 +33,20 @@ var upload = multer({
     storage: storage
 });
 
-app.post("/create", (req, res) => {
-    const brand = req.body.brand;
-    const description = req.body.description;
-    const category = req.body.category;
-    const title = req.body.title;
+app.post("/create", upload.single('image'),  (req, res) => {
 
-    console.log('request file: ', req.body)
+    const { title, description, brand, category} = req.body;
+    const image = req.file;
+    const imagePath = path.join('public/images', image.filename);
 
-    const sql = 'INSERT INTO products (title, description, brand, category ) VALUES (?,?,?,?)';
+    console.log('image', image);
+    console.log('imgpath', imagePath);
+
+    const sql = 'INSERT INTO products (title, description, brand, category, image ) VALUES (?,?,?,?,?)';
     
     db.query(
         sql,
-        [ title, description, brand, category],
+        [ title, description, brand, category, imagePath],
         (err, result) => {
             if (err) {
                 console.log('erreur', err);
@@ -109,26 +98,6 @@ app.delete("/delete/:id", (req, res) => {
             res.send(result)
         }
     })
-})
-
-
-
-
-//route for post image
-// app.post("/upload", upload.single('file'), (req, res) => {
-//    const image = req.file.filename;
-//    const sql = 'INSERT INTO images (imgname) VALUES (?)';
-//    db.query(sql, [image], (err, result) => {
-//         if(err) return res.json({message: "error"})
-//         return res.json({message: "success"})   
-// })});
-
-app.get("/", (req, res) => {
-const sql = "SELECT * FROM images";
-db.query(sql, (err, result) => {
-    if(err) return res.json('error')
-     return res.json(result)
-})
 })
 
 
