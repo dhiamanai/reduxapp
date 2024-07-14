@@ -6,10 +6,9 @@ const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser');
 
-
 app.use(cors());
 app.use(express.json());
-app.use(express.static("./public"))
+app.use(express.static('public'));
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
@@ -36,18 +35,17 @@ var upload = multer({
 app.post("/create", upload.single('image'),  (req, res) => {
 
     const { title, description, brand, category} = req.body;
-    const image = req.file;
-    const imagePath = path.join('public/images', image.filename);
+    const image = req.file.filename;
 
-    console.log('image', image);
-    console.log('imgpath', imagePath);
+    console.log('image:', image);
+ 
 
     const sql = 'INSERT INTO products (title, description, brand, category, image ) VALUES (?,?,?,?,?)';
     
     db.query(
         sql,
-        [ title, description, brand, category, imagePath],
-        (err, result) => {
+        [ title, description, brand, category, image],
+        (err) => {
             if (err) {
                 console.log('erreur', err);
             } else {

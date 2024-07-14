@@ -28,9 +28,6 @@ const Form = () => {
         } catch (error) {
             console.error('Erreur:', error);
         }
-
-        // dispatch(insertProducts(productData));
-
       
         title.current.value = null;
         description.current.value = null; 

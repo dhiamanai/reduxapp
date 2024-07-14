@@ -2,10 +2,8 @@ import './App.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from './features/ProductSlice';
-import Navbar from './components/Navbar';
 import Form from './components/Form';
 import Data from './components/Data';
-
 
 function App() {
     const dispatch = useDispatch();
@@ -14,13 +12,11 @@ function App() {
     useEffect(() => {
         dispatch(getProducts()); 
     }, [dispatch]);
-      
 
     return (
         <div className="App">
-            <Navbar/>
+            <h1 className='text-6xl text-red-500'> Hello tailwind css</h1>
             <Form />
-          
             {
                 loading == false ? 
                     value.length > 0 ? 
@@ -33,6 +29,7 @@ function App() {
                         : <h1>sorry §§ No products available !</h1> 
                     : <h1>loading...</h1> 
             }
+
         </div>
     );
 }

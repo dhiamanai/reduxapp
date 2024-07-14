@@ -33,10 +33,8 @@ const Data = ({ loading, value }) => {
                 <h4>{element.brand}</h4>
                 <h4>{element.description}</h4>
                 { 
-                    element.images?.length > 1 && 
-        <center>
-           
-        </center>
+                    <img src={`http://localhost:3001/images/${element.image}`} alt={element.id} style={{ width: '150px', height: '100px'}}/>
+                 
                 }
                 <h4>
                     <details>

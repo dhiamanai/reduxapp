@@ -4,9 +4,8 @@ import axios from 'axios';
 
 export const getProducts = createAsyncThunk('products/getProducts', 
     async () => {
-        const res = await axios.get('http://localhost:3001/getdata');
-        console.log('resp', res.data);
-        return  res.data;
+        const response = await axios.get('http://localhost:3001/getdata');
+        return  response.data;
     });
 
 export const insertProducts = createAsyncThunk('products/insertProducts', 
@@ -44,26 +43,6 @@ export const deleteProduct = createAsyncThunk('products/deleteproduct',
             return rejectWithValue('erreur ',error.message);
         }
     });
-
-// export const updateProduct = createAsyncThunk('products/updateProduct', 
-// async (data, thunkAPI) => {
-//     const { rejectWithValue } = thunkAPI;
-//     try {
-//         console.log('<<< data ', data.title, '<<<id', data.id);
-//         const id = data.id;
-//         const res = await fetch(`http://localhost:3001/delete/${id}`, {
-//             method: 'PUT',
-//             body: JSON.stringify(data),
-//             headers: {
-//                 'Content-type': 'application/json; charset=UTF-8'
-//             }
-//         });
-//         const upres = await res.json();
-//         return upres;
-//     } catch (error) {
-//         return rejectWithValue('erreur ',error.message);
-//     }
-// });
 
 export const productSlice = createSlice({
     name: 'products',
