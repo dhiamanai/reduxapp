@@ -5,7 +5,6 @@ import Form from './components/Form';
 import Data from './components/Data';
 import Navbaar from './components/Navbaar';
 import Footerr from './components/Footer';
-import Buton from './components/Buton';
 
 
 function App() {

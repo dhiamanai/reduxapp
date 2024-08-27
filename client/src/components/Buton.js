@@ -8,7 +8,7 @@ export default function Buton() {
 
     return (
         <>
-            <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
+            <Button className='w-56 bg-white shadow rounded' onClick={() => setOpenModal(true)}>Toggle modal</Button>
             <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
                 <Modal.Header>Terms of Service</Modal.Header>
                 <Modal.Body>
@@ -27,7 +27,7 @@ export default function Buton() {
                 <Modal.Footer>
                     <Button onClick={() => setOpenModal(false)}>I accept</Button>
                     <Button color="gray" onClick={() => setOpenModal(false)}>
-              Decline
+                          Decline
                     </Button>
                 </Modal.Footer>
             </Modal>

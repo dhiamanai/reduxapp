@@ -38,17 +38,14 @@ const Form = () => {
     };
 
     return (  
-        <>
-            <Button onClick={() => setOpenModal(true)}>ajouter un produit</Button>
+        <div className="flex justify-center py-4">
+            <Button onClick={() => setOpenModal(true)}> ajouter un produit </Button>
             <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
                 <Modal.Header />
                 <Modal.Body>
-                    <div className="space-y-6">
-                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">Add a product</h3>
-                        <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="email" value="title" />
-                            </div>
+                    <div className="space-y-6 ">
+                        <h3 className="text-xl font-medium text-gray-900 dark:text-white"> ajouter un produit </h3>
+                        <div className='space-y-6'>
                             <TextInput
                                 placeholder='brand...' 
                                 ref={brand}
@@ -83,13 +80,13 @@ const Form = () => {
                         </div>
                         
                         <div className="w-full">
-                            <Button onClick={() => addProduct}>add the product</Button>
+                            <Button onClick={() => addProduct}> add the product </Button>
                         </div>
                       
                     </div>
                 </Modal.Body>
             </Modal>
-        </>
+        </div>
        
     // <div>
 
