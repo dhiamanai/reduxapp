@@ -5,6 +5,8 @@ import Form from './components/Form';
 import Data from './components/Data';
 import Navbaar from './components/Navbaar';
 import Footerr from './components/Footer';
+import { Spinner } from 'flowbite-react';
+import HeroSection from './components/HeroSection';
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
     return (
         <div>
             <Navbaar/>
+            <HeroSection/>
             {
                 loading == false ? 
                     value.length > 0 ? 
@@ -27,7 +30,9 @@ function App() {
                             /> 
                         </div>
                         : <h1>sorry §§ No products available !</h1> 
-                    : <h1>loading...</h1> 
+                    : <div className="flex justify-center py-4 text-center">
+                        <Spinner aria-label="Center-aligned spinner example" size="xl"/>
+                    </div>
             }
 
             <Form />
