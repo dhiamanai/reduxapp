@@ -34,17 +34,17 @@ var upload = multer({
 
 app.post("/create", upload.single('image'),  (req, res) => {
 
-    const { title, description, brand, category} = req.body;
+    const { model, details, brand, category, price} = req.body;
     const image = req.file.filename;
 
     console.log('image:', image);
  
 
-    const sql = 'INSERT INTO products (title, description, brand, category, image ) VALUES (?,?,?,?,?)';
+    const sql = 'INSERT INTO products (model, details, brand, category, price, image ) VALUES (?,?,?,?,?,?)';
     
     db.query(
         sql,
-        [ title, description, brand, category, image],
+        [ model, details, brand, category, price, image],
         (err) => {
             if (err) {
                 console.log('erreur', err);
@@ -70,14 +70,15 @@ db.query("SELECT * FROM products", (err, result) => {
 app.put("/update", (req, res) => {
     const id = req.body.id;
     const brand = req.body.brand;
-    const description = req.body.description;
+    const details = req.body.details;
     const category = req.body.category;
-    const title = req.body.title;
+    const model = req.body.model;
+    const price = req.body.price;
 
-    const mysqlquery = "UPDATE products SET id = ?,title = IFNULL(?, title),description =  IFNULL(?, description), brand =  IFNULL(?, brand), category =  IFNULL(?, category) WHERE id = ?";
+    const mysqlquery = "UPDATE products SET id = ?,model = IFNULL(?, model),details =  IFNULL(?, details), brand =  IFNULL(?, brand), category =  IFNULL(?, category), price = IFNULL(?, price) WHERE id = ?";
 
     db.query(mysqlquery, 
-    [id, title, description, brand, category, id],
+    [id, model, details, brand, category, price, id],
     (err, result) => {
         if (err) {
         console.log('product update error ', err)

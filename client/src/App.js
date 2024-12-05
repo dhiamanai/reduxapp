@@ -7,7 +7,7 @@ import Navbaar from './components/Navbaar';
 import Footerr from './components/Footer';
 import { Spinner } from 'flowbite-react';
 import HeroSection from './components/HeroSection';
-
+import Dashboard from './components/Dashboard';
 
 function App() {
     const dispatch = useDispatch();

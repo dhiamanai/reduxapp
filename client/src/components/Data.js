@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { updateProduct, deleteProduct } from '../features/ProductSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card ,Button} from 'flowbite-react';
+import ReactReadMoreReadLess from 'react-read-more-read-less';
+
 
 
 const Data = () => {
@@ -30,32 +32,39 @@ const Data = () => {
     };
 
 
-
     return (
-       
             
-        <div id="Data" className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                
-            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <div id="Data" className="bg-slate-200 p-4 min-w-full sm:py-8 lg:max-w-7xl lg:px-8">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-10  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {value.map((product) => (
                     <a key={product.id} href={product.href} className="group">
                         <Card
-                            className='max-w-sm max-h-sm'
+                            className='max-w-sm h-[30rem] w-80' // Remplace h-96 par une hauteur personnalisée
                             imgAlt="Meaningful alt text for an image that is not purely decorative"
                         >
                             <img
                                 src={`http://localhost:3001/images/${product.image}`}
                                 alt="Meaningful alt text"
-                                className="h-64 w-full object-cover"
+                                className="h-1/2 w-full object-cover"
                             />
                             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Noteworthy technology acquisitions 2021
+                                {product.model}
                             </h5>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                            </p>
 
-                            <Button>
+                            <ReactReadMoreReadLess
+                                className="font-normal text-gray-700 dark:text-gray-400"
+                                charLimit={25}
+                                readMoreText={'Read more..'}
+                                readLessText={'Read less '}
+                            >
+                               
+                                {product.details}
+                               
+                            </ReactReadMoreReadLess>
+                          
+                            <span className="text-3xl font-bold text-gray-900 dark:text-white">{product.price} DT</span>
+
+                            <Button outline gradientDuoTone="greenToBlue">
                                      Update 
                                 <svg className="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -65,38 +74,6 @@ const Data = () => {
                                     />
                                 </svg>
                             </Button>
-                        
-                            <div>
-                                <details>
-                                    <summary> update</summary>
-                                    <input 
-                                        type='text'
-                                        placeholder={product.title}
-                                        onChange={(e) => { setUptitle(e.target.value); }}
-                                    ></input>
-                                    <input 
-                                        type='text'
-                                        placeholder={product.description}
-                                        onChange={(e) => { setDescription(e.target.value); }}
-                                    ></input>
-                                    <input 
-                                        type='text'
-                                        placeholder={product.brand}
-                                        onChange={(e) => { setBrand(e.target.value); }}
-                                    ></input>
-                      
-                                    <button
-                                        onClick={() => { uProduct(product.id, updtitle, updDescription, updBrand); }}
-                                    >
-                                          update
-                                    </button>
-                                    <button
-                                        onClick={() => { delProduct(product.id); }}
-                                    >
-                                          delete
-                                    </button>
-                                </details>
-                            </div>
                         </Card>
                     </a>
                 ))}
