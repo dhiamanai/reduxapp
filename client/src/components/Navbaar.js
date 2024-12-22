@@ -1,7 +1,8 @@
 import React from 'react';
-import {Link} from 'react-scroll';
 import { Navbar } from 'flowbite-react';
 import MyLogo from '../assets/eshop.png';
+import { Link } from 'react-router-dom';
+
 
 export default function Navbaar() {
     return (
@@ -16,26 +17,24 @@ export default function Navbaar() {
         
             <Navbar.Toggle />
             <Navbar.Collapse>
-                <Navbar.Link 
-                    as={Link}
-                    to='Hero'
+                <Link 
+                    to='/'
                     spy={true} 
                     smooth={true} 
                     offset={50} 
                     duration={100} 
                     className='hover:bg-gray-200 active:bg-red-700 cursor-pointer' >
                          Home
-                </Navbar.Link>
-                <Navbar.Link 
-                    as={Link}
-                    to='Form' 
+                </Link>
+                <Link 
+                    to='/Sell' 
                     spy={true} 
                     smooth={true} 
                     offset={50} 
                     duration={100} 
                     className='hover:bg-gray-200 active:bg-violet-700 cursor-pointer' >
                          Sell
-                </Navbar.Link>
+                </Link>
                 <Navbar.Link className='hover:bg-gray-200 active:bg-red-700' href="#" >Services</Navbar.Link>
                 <Navbar.Link className='hover:bg-gray-200 active:bg-red-700' href="#" >Pricing</Navbar.Link>
                 <Navbar.Link className='hover:bg-gray-200 active:bg-red-700' href="#" >Contact</Navbar.Link>
