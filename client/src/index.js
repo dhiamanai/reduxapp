@@ -5,10 +5,13 @@ import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import products from './features/ProductSlice';
+import shop from './features/Shop';
+
 
 const store = configureStore({
     reducer:{
-        products
+        products,
+        shop
     }
 });
 

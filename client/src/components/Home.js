@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Spinner } from 'flowbite-react';
-import Data from './Data';
+import Cards from './Cards';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../features/ProductSlice';
 import HeroSection from './HeroSection';
@@ -17,11 +17,12 @@ const Home = () => {
 
     return ( 
         <div>
+
             <HeroSection />
             {loading === false ? (
                 value.length > 0 ? (
                     <div>
-                        <Data loading={loading} />
+                        <Cards loading={loading} />
                     </div>
                 ) : (
                     <h1>Sorry, no products available!</h1>

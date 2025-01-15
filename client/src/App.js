@@ -1,24 +1,29 @@
 import React from 'react';
-import Navbaar from './components/Navbaar';
-import Footerr from './components/Footer';
 import Home from './components/Home';
 import Form from './components/Form';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Shop from './components/Store';
+import Contact from './components/Contact';
+import Footerr from './components/Footer';
+import Navbaar from './components/Navbaar';
 
 function App() {
   
     return (
         <Router>
-            <div>
-                <Navbaar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/sell" element={<Form />} />
-
-                </Routes>
+            <div className="min-h-screen flex flex-col">
+                <div className="flex-grow">
+                    <Navbaar />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/sell" element={<Form />} />
+                        <Route path="/shop" element={<Shop />} />
+                        <Route path="/contact" element={<Contact />} />
+                    </Routes>
+                </div>
                 <Footerr />
             </div>
+
         </Router>
     );
 }

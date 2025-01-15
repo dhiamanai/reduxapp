@@ -41,12 +41,11 @@ const Form = () => {
         <div id="Form" className="h-[90vh] flex flex-row"> 
             <div className='w-1/2 p-2 flex flex-col items-center justify-center h-full'>
                 <p className='w-full bg-slate-300 text-center font-bold text-2xl text-fuchsia-950 mb-8'>
-    Add a product
+    Add a product to this platform
                 </p>
                 <img src={myImage} alt="My SVG Image" className="h-96 py-8 w-auto" />
             </div>
 
-     
             <div className="w-1/2 max-w-2xl mx-auto bg-gray-100 p-4  " >
               
                 <form onSubmit={addProduct}>
@@ -109,6 +108,7 @@ const Form = () => {
                                 name="price"
                                 placeholder='****' 
                                 className="bg-gray-50 text-grey-darker font-normal rounded text-grey-darkest border border-red rounded-l-none font-bold"
+                                min="0"
                                 onChange={e => setPrice(e.target.value)}/>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ const Form = () => {
                         </button>
                     </div>
                 </form>
-    
+       
                 <p className="mt-5">These input field components is a way to add the product you want to sell
                 </p>
             </div>
