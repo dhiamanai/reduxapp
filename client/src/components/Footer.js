@@ -133,6 +133,7 @@ const Footerr = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button
+                        className=' text-white rounded-lg bg-emerald-500 hover:bg-emerald-400 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900'
                         onClick={() => {
                             setOpenModal3(false); // Ferme le modal
                             handleSendMessage(); // Exécute la logique pour envoyer le message

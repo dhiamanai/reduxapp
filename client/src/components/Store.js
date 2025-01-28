@@ -38,7 +38,7 @@ const Store = () => {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center w-3/4 h-64 text-center mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <div className="flex flex-col items-center justify-center w-3/4 h-64 text-center mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
                     <svg
                         className="w-16 h-16 text-gray-400 dark:text-gray-600 mb-4"
                         fill="none"
@@ -55,7 +55,7 @@ const Store = () => {
                         ></path>
                     </svg>
                     <p className="text-lg font-semibold text-gray-800 dark:text-gray-100">Your cart is empty</p>
-                    <p className="text-gray-500 dark:text-gray-400 mt-2">
+                    <p className="text-gray-500 dark:text-gray-400 mt-6">
                     Looks like you haven’t added anything to your cart yet. Start exploring our collection!
                     </p>
                     <button

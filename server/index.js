@@ -15,7 +15,7 @@ const db = mysql.createConnection({
     user: "root",
     host: "localhost",
     password: "",
-    database:"reactredux"
+    database:"eshop"
 });
 
 //! Use of Multer
@@ -34,17 +34,17 @@ var upload = multer({
 
 app.post("/create", upload.single('image'),  (req, res) => {
 
-    const { model, details, brand, category, price} = req.body;
+    const { model, description, brand, category, price} = req.body;
     const image = req.file.filename;
 
     console.log('image:', image);
  
 
-    const sql = 'INSERT INTO products (model, details, brand, category, price, image ) VALUES (?,?,?,?,?,?)';
+    const sql = 'INSERT INTO products (model, description, brand, category, price, image ) VALUES (?,?,?,?,?,?)';
     
     db.query(
         sql,
-        [ model, details, brand, category, price, image],
+        [ model, description, brand, category, price, image],
         (err) => {
             if (err) {
                 console.log('erreur', err);
@@ -70,15 +70,15 @@ db.query("SELECT * FROM products", (err, result) => {
 app.put("/update", (req, res) => {
     const id = req.body.id;
     const brand = req.body.brand;
-    const details = req.body.details;
+    const description = req.body.description;
     const category = req.body.category;
     const model = req.body.model;
     const price = req.body.price;
 
-    const mysqlquery = "UPDATE products SET id = ?,model = IFNULL(?, model),details =  IFNULL(?, details), brand =  IFNULL(?, brand), category =  IFNULL(?, category), price = IFNULL(?, price) WHERE id = ?";
+    const mysqlquery = "UPDATE products SET id = ?,model = IFNULL(?, model),description =  IFNULL(?, description), brand =  IFNULL(?, brand), category =  IFNULL(?, category), price = IFNULL(?, price) WHERE id = ?";
 
     db.query(mysqlquery, 
-    [id, model, details, brand, category, price, id],
+    [id, model, description, brand, category, price, id],
     (err, result) => {
         if (err) {
         console.log('product update error ', err)

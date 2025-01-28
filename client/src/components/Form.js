@@ -6,7 +6,7 @@ import myImage from '../assets/undraw.svg';
 const Form = () => {
    
     const model = useRef(null);
-    const details = useRef(null);
+    const description = useRef(null);
     const [brand, setBrand] = useState(null);
     const [category, setCategory] = useState(null);
     const [price, setPrice] = useState(null);
@@ -16,7 +16,7 @@ const Form = () => {
 
         const formData = new FormData();
         formData.append('model', model.current.value);
-        formData.append('details', details.current.value);
+        formData.append('details', description.current.value);
         formData.append('brand', brand);
         formData.append('category', category);
         formData.append('price', price);
@@ -34,22 +34,20 @@ const Form = () => {
         }
       
         model.current.value = null;
-        details.current.value = null; 
+        description.current.value = null; 
     }; 
 
     return (  
         <div id="Form" className="h-[90vh] flex flex-row"> 
             <div className='w-1/2 p-2 flex flex-col items-center justify-center h-full'>
-                <p className='w-full bg-slate-300 text-center font-bold text-2xl text-fuchsia-950 mb-8'>
-    Add a product to this platform
-                </p>
+              
                 <img src={myImage} alt="My SVG Image" className="h-96 py-8 w-auto" />
             </div>
 
-            <div className="w-1/2 max-w-2xl mx-auto bg-gray-100 p-4  " >
-              
+            <div className="w-1/2 max-w-2xl mx-auto bg-gray-100 p-4 m-4 " >
+                <h2 className="text-2xl font-bold text-emerald-700 dark:text-gray-100 text-center">Sell a product</h2>
                 <form onSubmit={addProduct}>
-                    <div className="grid px-8 gap-6 mb-6 lg:grid-cols-2">
+                    <div className="grid px-8 gap-6 mb-6 lg:grid-cols-2 mt-4">
                         <div>
                             <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Model</label>
                             <input 
@@ -61,13 +59,13 @@ const Form = () => {
                                 required />
                         </div>
                         <div>
-                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">details</label>
+                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">description</label>
                             <input 
                                 type="text" 
-                                id="details" 
+                                id="description" 
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                placeholder="details" 
-                                ref={details}
+                                placeholder="description" 
+                                ref={description}
                                 required />
                         </div>
                         <div className="max-w-md">
