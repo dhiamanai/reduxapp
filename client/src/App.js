@@ -4,7 +4,7 @@ import Form from './components/Form';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Shop from './components/Store';
 import Contact from './components/Contact';
-import Footerr from './components/Footer';
+import Footer from './components/Footer';
 import Navbaar from './components/Navbaar';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
                         <Route path="/contact" element={<Contact />} />
                     </Routes>
                 </div>
-                <Footerr />
+                <Footer />
             </div>
 
         </Router>

@@ -28,7 +28,7 @@ const Contact = () => {
                 <img src={contactusImage} alt="My SVG Image" className="h-96 py-4 w-2/3" />
             </div>
 
-            <div className='w-1/3 mx-auto'>     
+            <div className='w-2/4 mx-auto px-24'>     
                 <h2 className="text-2xl font-bold text-emerald-700 dark:text-gray-100 text-center">Contact Us</h2>
                 <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-400 text-center mt-4">
         We’d love to hear from you! Feel free to reach out to us using the form below or contact us directly at:

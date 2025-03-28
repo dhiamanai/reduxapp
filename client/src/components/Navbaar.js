@@ -1,73 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from 'flowbite-react';
 import MyLogo from '../assets/eshop.png';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-
-export default function Navbaar() {
+const Navbaar = () => {
     const { items } = useSelector((state) => state.shop);
-    
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+        console.log("Toggle clicked, new state:", !isOpen);
+    };
+
+    const handleLinkClick = () => {
+        setIsOpen(false);
+    };
+
     return (
         <Navbar fluid rounded className="sticky top-0 bg-violet-100 shadow-xl border-b-2 border-b-red-500 z-50">
-            <Navbar.Brand >
-                <Link to='/'>
-                    <img
-                        src={MyLogo}
-                        alt="Logo"
-                        className="w-[95px] h-[40px]"
-                    />
+            <Navbar.Brand>
+                <Link to="/">
+                    <img src={MyLogo} alt="Logo" className="w-[95px] h-[40px]" />
                 </Link>
             </Navbar.Brand>
-        
-            <Navbar.Toggle />
 
-            <Navbar.Collapse>
+            <button
+                onClick={handleToggle}
+                className="md:hidden focus:outline-none"
+            >
+                ☰
+            </button>
 
-                <Link 
-                    to='/'
-                    spy={true} 
-                    smooth={true} 
-                    offset={50} 
-                    duration={100} 
-                    className='hover:bg-gray-200 active:bg-gray-400 cursor-pointer' >
-                         Home
-                </Link>
-
-                <Link 
-                    to='/sell' 
-                    spy={true} 
-                    smooth={true} 
-                    offset={50} 
-                    duration={100} 
-                    className='hover:bg-gray-200 active:bg-gray-400 cursor-pointer' >
-                         Sell
-                </Link>
-                <Link 
-                    to='/contact' 
-                    spy={true} 
-                    smooth={true} 
-                    offset={50} 
-                    duration={100} 
-                    className='hover:bg-gray-200 active:bg-gray-400 cursor-pointer' >
-                         contact
-                </Link>
-
+            <div className={`${isOpen ? "block" : "hidden"} md:flex w-full md:w-auto`}>
                 <Link
-                    className="relative"
-                    to="/shop"
-                    spy={true}
-                    smooth={true}
-                    offset={50}
-                    duration={100}
+                    to="/"
+                    className="block md:inline-block px-4 py-2 hover:bg-gray-200"
+                    onClick={handleLinkClick}
                 >
-                    {items > 0 ? (
-                        <div className="absolute -top-2 left-4">
-                            <p className="flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                                {`${items}`}
-                            </p>
-                        </div>
-                    ) : null}
+                    Home
+                </Link>
+                <Link
+                    to="/sell"
+                    className="block md:inline-block px-4 py-2 hover:bg-gray-200"
+                    onClick={handleLinkClick}
+                >
+                    Sell
+                </Link>
+                <Link
+                    to="/contact"
+                    className="block md:inline-block px-4 py-2 hover:bg-gray-200"
+                    onClick={handleLinkClick}
+                >
+                    Contact
+                </Link>
+                <Link
+                    className="relative block md:inline-block px-4 py-2"
+                    to="/shop"
+                    onClick={handleLinkClick}
+                >
+                    {items > 0 && (
+                        <span className="absolute -top-0 left-4 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                            {items}
+                        </span>
+                    )}
 
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +80,9 @@ export default function Navbaar() {
                         />
                     </svg>
                 </Link>
-               
-            </Navbar.Collapse>
+            </div>
         </Navbar>
     );
-}
+};
+
+export default Navbaar;

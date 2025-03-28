@@ -1,122 +1,106 @@
 import React, { useState } from 'react';
-import { updateProduct, deleteProduct } from '../features/ProductSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card ,Button} from 'flowbite-react';
 import { setCartValue } from '../features/Shop';
-
-
+import ProductModal from './ProductModal';
 
 const Cards = () => {
     
     const dispatch = useDispatch();
     const { value } = useSelector((state) => state.products);
-
-    const [updtitle, setUptitle] = useState(null);
-    const [updDescription, setDescription] = useState(null);
-    const [updBrand, setBrand] = useState(null);
-    
-    const uProduct = (id) => {
-        const data = {
-            id,
-            title: updtitle,
-            description: updDescription,
-            brand: updBrand
-        };
-        console.log('data ',data);
-        dispatch( updateProduct(data)).then(() => window.location.reload(false));
-    };
-    
-    const delProduct = (id) => {
-        dispatch( deleteProduct(id)).then(() => window.location.reload(false));  
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [productt, setProduct] = useState(null);
 
     return (
-            
-        <div id="Data" className="bg-slate-200 min-w-full lg:max-w-7xl lg:px-8 dark:bg-slate-800 py-10">
-            <p className="text-center text-3xl font-semibold text-gray-900 dark:text-white mb-8">Products</p>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
-                {value.map((product) => (
-                  
-                    <Card key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg ">
-                        <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
-                            <img
-                                src={`http://localhost:3001/images/${product.image}`}
-                                alt={product.model}
-                                className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
-                            />
-                        </div>
-                        <div className="p-4 space-y-2">
-                            <h5 className="text-lg font-semibold text-gray-900 dark:text-white truncate">{product.model}</h5>
-                            <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400">{product.price} DT</span>
-                            <Button
-                                className="bg-emerald-500 text-white hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300
-                                     dark:focus:ring-emerald-900 w-full py-2 rounded-md flex items-center justify-center space-x-2 text-sm"
-                                onClick={() => dispatch(setCartValue(product))}  >
-                          
-                                Add to Cart
-                                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                        clipRule="evenodd"
+        <>
+        
+            {/* *********************************** */}
+
+            <section className="py-12 bg-white sm:py-16 lg:py-20">
+                <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                    <div className="max-w-md mx-auto text-center">
+                        <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Our featured items</h2>
+                        <p className="mt-4 text-base font-normal leading-7 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus faucibus massa dignissim tempus.</p>
+                    </div>
+
+                   
+                    <div className="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
+                        {value.map((product) => (
+                            <div  key={product.id} 
+                                className="relative group m-2 p-2 shadow-md rounded-lg bg-white"
+                                onClick={() => {
+                                    setIsModalOpen(true);
+                                    setProduct(product);
+                                }}
+                            >
+
+                                <div className="relative overflow-hidden h-60 aspect-w-1 bg-gray-200 flex items-center justify-center">
+                                    <img 
+                                        className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110" 
+                                        src={`http://localhost:3001/images/${product.image}`} 
+                                        alt="eeeeeeeee" 
                                     />
-                                </svg>
-                            </Button>
-                        </div>
-                    </Card>
-                ))}
-            </div>
-        </div>
+                                </div>
+
+                                <div className="absolute left-3 top-3">
+                                    <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full">New</p>
+                                </div>
+                                <div className="flex items-start justify-between mt-4 space-x-4">
+                                    <div>
+                                        <h3 className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                                           
+                                            {product.model}
+                                            <span className="absolute inset-0" aria-hidden="true"></span>
+                                          5 
+                                        </h3>
+                                        <div className="flex items-center mt-2.5 space-x-px">
+                                            <svg className="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                />
+                                            </svg>
+                                            <svg className="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                />
+                                            </svg>
+                                            <svg className="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                />
+                                            </svg>
+                                            <svg className="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                />
+                                            </svg>
+                                            <svg className="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <div className="text-right">
+                                        <p className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">{product.price} TND</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))} 
+                    </div>
+                
+                </div>
+            </section>
+            
+           
+            {isModalOpen && <ProductModal productt={productt} onClose={() => setIsModalOpen(false)} />}
+
+
+        </>
     
-    
 
 
-
-    // loading == false && value.map(element => {
-
-    //     return <div className='frame bg-red-400' key={element.id}>
-    //         <h4>{element.id}</h4>
-    //         <h4>{element.title}</h4>
-    //         <h4>{element.brand}</h4>
-    //         <h4>{element.description}</h4>
-    //         { 
-    //             <img src={`http://localhost:3001/images/${element.image}`} alt={element.id} style={{ width: '150px', height: '100px'}}/>
-                 
-    //         }
-    // <h4>
-    // <details>
-    //     <summary> update</summary>
-    //     <input 
-    //         type='text'
-    //         placeholder={element.title}
-    //         onChange={(e) => { setUptitle(e.target.value); }}
-    //     ></input>
-    //     <input 
-    //         type='text'
-    //         placeholder={element.description}
-    //         onChange={(e) => { setDescription(e.target.value); }}
-    //     ></input>
-    //     <input 
-    //         type='text'
-    //         placeholder={element.brand}
-    //         onChange={(e) => { setBrand(e.target.value); }}
-    //     ></input>
-                      
-    //     <button
-    //         onClick={() => { uProduct(element.id, updtitle, updDescription, updBrand); }}
-    //     >
-    // update
-    //     </button>
-    //     <button
-    //         onClick={() => { delProduct(element.id); }}
-    //     >
-    // delete
-    //     </button>
-    // </details>
-    // </h4>
-    //     </div>; 
-    // }
-    // )
     );
 };
 

@@ -4,6 +4,7 @@ import Cards from './Cards';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../features/ProductSlice';
 import HeroSection from './HeroSection';
+import Support from './support';
 
 
 const Home = () => {
@@ -32,6 +33,8 @@ const Home = () => {
                     <Spinner aria-label="Center-aligned spinner example" size="xl" />
                 </div>
             )}
+            <Support/>
+            
         </div>
     );
 };

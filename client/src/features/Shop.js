@@ -1,26 +1,44 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
+import { createSlice } from '@reduxjs/toolkit';
 
 export const cart = createSlice({
-
     name: 'cart',
     initialState: {
         value: [],
         totalprice: 0,
         items: 0
-    },
+    }, 
 
     reducers: {
-        setCartValue: (state, action) => {
-            state.value.push(action.payload); // Met à jour la valeur avec la donnée transmise
-            state.totalprice += action.payload.price;
-            state.items += 1;
+        setCartValue:  (state, action) => {
+            const { id, quantity, totalPrice } = action.payload;
+            
+            // Vérifier si le produit est déjà dans le panier
+            const existingItem = state.value.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+                existingItem.totalPrice += totalPrice;
+            } else {
+                state.value.push(action.payload);
+            }
+
+            // Mettre à jour le prix total et le nombre d'articles
+            state.totalprice += totalPrice;
+            state.items += quantity;
+        },
+        removeProduct: (state, action) => {
+            const productId = action.payload;
+            const productIndex = state.value.findIndex(item => item.id === productId);
+            
+            if (productIndex !== -1) {
+                const product = state.value[productIndex];
+                state.totalprice -= product.totalPrice;
+                state.items -= product.quantity;
+                state.value.splice(productIndex, 1);
+            }
         },
     },
-    
-   
 });
 
-export const { setCartValue } = cart.actions; // Exportez l'action
+export const { setCartValue, reduceQuantity, removeProduct } = cart.actions;
 export default cart.reducer;

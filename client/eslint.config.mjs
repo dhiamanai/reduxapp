@@ -13,7 +13,8 @@ export default [
         rules: {
             semi: "error",
             "prefer-const": "warn",
-            indent: ["error", 4]
+            indent: ["error", 4],
+            "react/prop-types": "off"
         }
     }
 ];
