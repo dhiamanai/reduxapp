@@ -2,3 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global typography and smoothing */
+html, body, #root {
+  @apply bg-white text-gray-900 dark:bg-black dark:text-white antialiased;
+}
+
+/* Subtle section separators */
+.section-divider {
+  @apply border-t border-gray-100 dark:border-gray-800;
+}
+
+/* Smooth transitions for interactive elements */
+* {
+  @apply transition-colors duration-200;
+}

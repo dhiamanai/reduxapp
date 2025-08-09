@@ -5,7 +5,7 @@ export const cart = createSlice({
     initialState: {
         value: [],
         totalprice: 0,
-        items: 0
+        // Removed items property
     }, 
 
     reducers: {
@@ -24,7 +24,6 @@ export const cart = createSlice({
 
             // Mettre à jour le prix total et le nombre d'articles
             state.totalprice += totalPrice;
-            state.items += quantity;
         },
         removeProduct: (state, action) => {
             const productId = action.payload;
@@ -33,7 +32,6 @@ export const cart = createSlice({
             if (productIndex !== -1) {
                 const product = state.value[productIndex];
                 state.totalprice -= product.totalPrice;
-                state.items -= product.quantity;
                 state.value.splice(productIndex, 1);
             }
         },

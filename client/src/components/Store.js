@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useMemo } from 'react';
 import { Table } from "flowbite-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
-import { reduceQuantity, removeProduct } from '../features/Shop';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeProduct } from '../features/Shop';
 
 const Store = () => {
-    const { value, totalprice } = useSelector((state) => state.shop);
     const dispatch = useDispatch();
-    const [products, setProducts] = useState(value);
-    const [total, setTotal] = useState(totalprice);
+    const products = useSelector((state) => state.shop.value);
+    const total = useMemo(
+        () => products.reduce((sum, product) => sum + (product.totalPrice || 0), 0),
+        [products]
+    );
 
-    useEffect(() => {
-        setProducts(value);
-        setTotal(totalprice);
-    }, [value, totalprice]);
-
-    const handleReduceQuantity = (productId) => {
+    const handleRemoveProduct = (productId) => {
         dispatch(removeProduct(productId));
     };
 
@@ -30,7 +27,7 @@ const Store = () => {
                             <Table.HeadCell>Category</Table.HeadCell>
                             <Table.HeadCell>Brand</Table.HeadCell>
                             <Table.HeadCell>Price</Table.HeadCell>
-                            <Table.HeadCell>quantity</Table.HeadCell>
+                            <Table.HeadCell>Quantity</Table.HeadCell>
                             <Table.HeadCell>Edit</Table.HeadCell>
                         </Table.Head>
                         <Table.Body className="divide-y">
@@ -50,7 +47,7 @@ const Store = () => {
                                         <FontAwesomeIcon 
                                             className='cursor-pointer' 
                                             icon={faMinus} 
-                                            onClick={() => handleReduceQuantity(product.id)} 
+                                            onClick={() => handleRemoveProduct(product.id)} 
                                         />
                                     </Table.Cell>
                                 </Table.Row>

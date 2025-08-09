@@ -15,7 +15,7 @@ const Footerr = () => {
     };
 
     return (
-        <Footer container className="bg-violet-100 p-4 bottom-0 w-full mt-auto">
+        <Footer container className="backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 dark:bg-black/60 border-t border-gray-100 p-6 bottom-0 w-full mt-auto">
             <div className="w-full flex flex-col md:flex-row justify-between items-center">
                 <Footer.Copyright by="Dhia Manai | Web Developer™" year={2024} />
                 <Footer.LinkGroup className="flex flex-wrap gap-4 mt-4 md:mt-0">

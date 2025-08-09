@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Navbaar = () => {
-    const { items } = useSelector((state) => state.shop);
     const [isOpen, setIsOpen] = useState(false);
+    const cartItems = useSelector((state) => state.shop.value);
+    const items = cartItems.reduce((sum, product) => sum + (product.quantity || 0), 0);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -18,7 +19,7 @@ const Navbaar = () => {
     };
 
     return (
-        <Navbar fluid rounded className="sticky top-0 bg-violet-100 shadow-xl border-b-2 border-b-red-500 z-50">
+        <Navbar fluid rounded className="sticky top-0 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 dark:bg-black/60 border-b border-gray-100 z-50">
             <Navbar.Brand>
                 <Link to="/">
                     <img src={MyLogo} alt="Logo" className="w-[95px] h-[40px]" />
@@ -57,7 +58,6 @@ const Navbaar = () => {
                 <Link
                     className="relative block md:inline-block px-4 py-2"
                     to="/shop"
-                    onClick={handleLinkClick}
                 >
                     {items > 0 && (
                         <span className="absolute -top-0 left-4 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">

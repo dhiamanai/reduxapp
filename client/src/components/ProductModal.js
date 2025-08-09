@@ -15,57 +15,66 @@ const ProductModal = ({ productt, onClose }) => {
         setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
     };
 
-    const totalPrice = price * quantity; // Prix total en fonction de la quantité
+    const totalPrice = price * quantity;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center">
-            <div className="bg-white mt-12 p-6 rounded-lg w-3/5 max-w-3xl relative flex gap-6">
-                {/* Bouton de fermeture */}
-                <button onClick={onClose} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 transition-opacity duration-300">
+            <div className="bg-white mt-12 p-6 rounded-2xl w-11/12 max-w-3xl relative flex flex-col md:flex-row gap-6 shadow-lg transform scale-100 transition-transform duration-300">
+                {/* Close Button */}
+                <button 
+                    onClick={onClose} 
+                    className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold transition-transform transform hover:scale-110"
+                >
                     ×
                 </button>
 
-                {/* Image du produit */}
-                <div className="w-2/5 flex items-center">
-                    <img src={`http://localhost:3001/images/${image}`} alt="Product" className="w-full h-64 object-cover rounded-lg" />
+                {/* Product Image */}
+                <div className="w-full md:w-2/5 flex items-center justify-center">
+                    <img 
+                        src={`http://localhost:3001/images/${image}`} 
+                        alt="Product" 
+                        className="w-full h-64 object-cover rounded-lg shadow-md"
+                    />
                 </div>
 
-                {/* Contenu du produit */}
-                <div className="w-3/5 text-left">
-                    <h2 className="text-2xl font-bold mb-2">{model}</h2>
+                {/* Product Content */}
+                <div className="w-full md:w-3/5 text-left flex flex-col justify-between">
+                    <h2 className="text-3xl font-bold mb-4 text-gray-800">{model}</h2>
 
-                    {/* Prix total dynamique */}
-                    <div className="mb-4">
-                        <span className="text-green-600 font-bold text-xl">{totalPrice.toFixed(2)} TND</span>
+                    {/* Dynamic Total Price */}
+                    <div className="mb-6">
+                        <span className="text-green-600 font-bold text-2xl">{totalPrice.toFixed(2)} TND</span>
                     </div>
 
-                    {/* Sélecteur de quantité */}
+                    {/* Quantity Selector */}
                     <div className="mb-6 flex items-center space-x-4">
-                        <h3 className="font-semibold">Quantity:</h3>
-                        <div className="flex items-center border border-gray-300 rounded-lg">
+                        <h3 className="font-semibold text-lg text-gray-700">Quantity:</h3>
+                        <div className="flex items-center border border-gray-300 rounded-lg shadow-sm">
                             <button 
                                 onClick={decreaseQuantity} 
-                                className="px-3 py-1 text-lg font-bold bg-gray-200 hover:bg-gray-300 rounded-l-lg"
+                                className="px-4 py-2 text-lg font-bold bg-gray-200 hover:bg-gray-300 rounded-l-lg transition-colors"
                             >
                                 −
                             </button>
-                            <span className="px-4 text-lg font-medium">{quantity}</span>
+                            <span className="px-6 text-lg font-medium">{quantity}</span>
                             <button 
                                 onClick={increaseQuantity} 
-                                className="px-3 py-1 text-lg font-bold bg-gray-200 hover:bg-gray-300 rounded-r-lg"
+                                className="px-4 py-2 text-lg font-bold bg-gray-200 hover:bg-gray-300 rounded-r-lg transition-colors"
                             >
                                 +
                             </button>
                         </div>
                     </div>
 
-                    {/* Bouton Ajouter au Panier */}
+                    {/* Add to Cart Button */}
                     <button 
                         onClick={() => {
-                            dispatch(setCartValue({ ...productt, quantity, totalPrice }));
+                            const productData = { ...productt, quantity, totalPrice };
+                            dispatch(setCartValue(productData));
                             onClose();
-                        }}                      
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        }}
+                        className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 transition-colors shadow-md"
+                    >
                         Add to Cart
                     </button>
                 </div>
