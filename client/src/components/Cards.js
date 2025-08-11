@@ -5,10 +5,11 @@ import { setCartValue } from '../features/Shop';
 import ProductModal from './ProductModal';
 import { motion } from 'framer-motion';
 
-const Cards = () => {
+const Cards = ({ productsOverride }) => {
     
     const dispatch = useDispatch();
     const { value } = useSelector((state) => state.products);
+    const products = productsOverride || value;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [productt, setProduct] = useState(null);
 
@@ -36,7 +37,7 @@ const Cards = () => {
                         }}
                         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 lg:mt-16"
                     >
-                        {value.map((product) => (
+                        {products.map((product) => (
                             <motion.div
                                 key={product.id}
                                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
