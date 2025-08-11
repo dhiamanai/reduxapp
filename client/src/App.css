@@ -28,28 +28,27 @@
   color: #61dafb;
 }
 
+/* Legacy frame class: make widths fluid on small screens */
 .frame {
- display:flexbox;
- align-items: center;
- align-content: center;
- justify-content: center;
- width: 27%;
- height: max-content;
-
- border: 2px solid rgb(152, 31, 31);
- border-radius: 10px;
- text-align: center;
- margin-top: 5px ;
- margin: 4px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 27rem;
+  height: max-content;
+  border: 2px solid rgb(152, 31, 31);
+  border-radius: 10px;
+  text-align: center;
+  margin: 4px auto;
 }
 
 .data {
   display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-  margin: 30px;
-	
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 16px;
 }
 
 @keyframes App-logo-spin {

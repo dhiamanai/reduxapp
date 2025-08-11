@@ -7,7 +7,7 @@ const HeroSection = () => {
         <div id="Hero" className="relative overflow-hidden bg-white dark:bg-black">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.06),transparent_60%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_60%)]" />
 
-            <div className="grid max-w-screen-xl h-[88vh] mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 items-center">
+            <div className="grid max-w-screen-xl min-h-[70vh] md:min-h-[80vh] lg:min-h-[88vh] mx-auto gap-8 lg:gap-8 xl:gap-0 py-10 lg:py-16 lg:grid-cols-12 items-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -47,11 +47,11 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
-                    className="hidden lg:flex lg:col-span-5 lg:items-center lg:justify-center"
+                    className="hidden md:flex md:col-span-5 md:items-center md:justify-center"
                 >
                     <img
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-                        className="object-contain h-3/4 drop-shadow-xl"
+                        className="object-contain h-48 sm:h-64 md:h-80 lg:h-3/4 drop-shadow-xl"
                         alt="mockup"
                     />
                 </motion.div>

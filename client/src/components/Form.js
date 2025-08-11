@@ -38,18 +38,18 @@ const Form = () => {
     }; 
 
     return (  
-        <div className="mx-auto flex flex-row p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg mt-10">
-            <div className=' mx-auto flex flex-col items-center justify-center h-full'>
-                <img src={myImage} alt="My SVG Image" className="h-96 py-4 w-2/3" />
+        <div className="mx-auto flex flex-col md:flex-row p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg mt-6 sm:mt-10">
+            <div className='mx-auto flex flex-col items-center justify-center h-full w-full md:w-2/5'>
+                <img src={myImage} alt="My SVG Image" className="w-full max-w-md h-auto py-4" />
             </div>
 
-            <div className='w-2/4 mx-auto'>     
-                <h2 className="text-2xl font-bold text-emerald-700 dark:text-gray-100 text-center">Sell a product</h2>
+            <div className='w-full md:w-3/5 mx-auto px-4 sm:px-6'>     
+                <h2 className="text-2xl sm:text-3xl font-bold text-emerald-700 dark:text-gray-100 text-center">Sell a product</h2>
                 <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-400 text-center mt-4">
             We’d love to hear from you! Feel free to reach out to us using the form below or contact us directly at:
                 </p>
                 <form onSubmit={addProduct}>
-                    <div className="grid px-8 gap-6 mb-6 lg:grid-cols-2 mt-4">
+                    <div className="grid px-0 sm:px-4 gap-6 mb-6 md:grid-cols-2 mt-4">
                         <div>
                             <label htmlFor="model" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Model</label>
                             <input 
@@ -96,7 +96,7 @@ const Form = () => {
                             </Select>
                         </div>
                     </div>
-                    <div className="max-w-md px-8 pb-6">
+                    <div className="max-w-md px-0 sm:px-4 pb-6">
                         <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price</label>
                         <div className="flex flex-row">
                             <span className="flex items-center bg-grey-lighter rounded rounded-r-none px-3 text-sm font-medium text-gray-900">TND</span>
@@ -110,7 +110,7 @@ const Form = () => {
                             />
                         </div>
                     </div>
-                    <div className='px-8 w-full md:w-3/4'>
+                    <div className='px-0 sm:px-4 w-full md:w-3/4'>
                         <div className="mb-2 block">
                             <Label htmlFor="file-upload" value="Upload an image" />
                         </div>
@@ -121,7 +121,7 @@ const Form = () => {
                             onChange={(e) => setImage(e.target.files[0])}
                         />
                     </div>
-                    <div className='flex p-8'>
+                    <div className='flex p-4 sm:p-8'>
                         <button 
                             type="submit" 
                             className="text-white self-center bg-emerald-500 hover:bg-emerald-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

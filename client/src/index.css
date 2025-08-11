@@ -7,6 +7,12 @@ html, body, #root {
   @apply bg-white text-gray-900 dark:bg-black dark:text-white antialiased;
 }
 
+/* Ensure images scale down on small screens */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Subtle section separators */
 .section-divider {
   @apply border-t border-gray-100 dark:border-gray-800;

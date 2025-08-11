@@ -20,15 +20,15 @@ const Store = () => {
     return ( 
         <div>
             {products && products.length > 0 ? (
-                <div className="overflow-x-auto justify-center py-8 w-full sm:w-3/4 md:w-2/4 mx-auto">
-                    <Table hoverable className='shadow-sm border-2 rounded-lg'>
-                        <Table.Head>
-                            <Table.HeadCell>Product name</Table.HeadCell>
-                            <Table.HeadCell>Category</Table.HeadCell>
-                            <Table.HeadCell>Brand</Table.HeadCell>
-                            <Table.HeadCell>Price</Table.HeadCell>
-                            <Table.HeadCell>Quantity</Table.HeadCell>
-                            <Table.HeadCell>Edit</Table.HeadCell>
+                <div className="overflow-x-auto justify-center py-6 sm:py-8 w-full sm:w-11/12 md:w-3/4 lg:w-2/3 mx-auto px-2 sm:px-0">
+                    <Table hoverable className='shadow-sm border-2 dark:border-gray-700 rounded-lg'>
+                        <Table.Head className="bg-gray-50 dark:bg-gray-900">
+                            <Table.HeadCell className="text-gray-700 dark:text-gray-200">Product name</Table.HeadCell>
+                            <Table.HeadCell className="text-gray-700 dark:text-gray-200">Category</Table.HeadCell>
+                            <Table.HeadCell className="text-gray-700 dark:text-gray-200">Brand</Table.HeadCell>
+                            <Table.HeadCell className="text-gray-700 dark:text-gray-200">Price</Table.HeadCell>
+                            <Table.HeadCell className="text-gray-700 dark:text-gray-200">Quantity</Table.HeadCell>
+                            <Table.HeadCell className="text-gray-700 dark:text-gray-200">Edit</Table.HeadCell>
                         </Table.Head>
                         <Table.Body className="divide-y">
                             {products.map((product, index) => (
@@ -39,10 +39,10 @@ const Store = () => {
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                         {index+1}. {product.model}
                                     </Table.Cell>
-                                    <Table.Cell>{product.category}</Table.Cell>
-                                    <Table.Cell>{product.brand}</Table.Cell>
-                                    <Table.Cell>{product.price} TND</Table.Cell>
-                                    <Table.Cell className='mx-auto'>{product.quantity}</Table.Cell>
+                                    <Table.Cell className="text-gray-700 dark:text-gray-200">{product.category}</Table.Cell>
+                                    <Table.Cell className="text-gray-700 dark:text-gray-200">{product.brand}</Table.Cell>
+                                    <Table.Cell className="text-gray-700 dark:text-gray-200">{product.price} TND</Table.Cell>
+                                    <Table.Cell className='mx-auto text-gray-700 dark:text-gray-200'>{product.quantity}</Table.Cell>
                                     <Table.Cell>
                                         <FontAwesomeIcon 
                                             className='cursor-pointer' 
@@ -53,7 +53,7 @@ const Store = () => {
                                 </Table.Row>
                             ))}
                             <Table.Row>
-                                <Table.Cell colSpan={4} className="text-right font-medium">
+                                <Table.Cell colSpan={4} className="text-right font-medium text-gray-800 dark:text-gray-100">
                                 Total price: {total} TND
                                 </Table.Cell>
                             </Table.Row>
@@ -61,7 +61,7 @@ const Store = () => {
                     </Table>
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center w-full sm:w-3/4 md:w-2/4 h-64 text-center mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6 m-24">
+                <div className="flex flex-col items-center justify-center w-11/12 sm:w-3/4 md:w-2/4 min-h-[12rem] text-center mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6 my-10 sm:my-16">
                     <svg
                         className="w-24 h-28 text-gray-400 dark:text-gray-600 mb-4"
                         fill="none"

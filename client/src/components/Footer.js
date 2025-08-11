@@ -15,17 +15,17 @@ const Footerr = () => {
     };
 
     return (
-        <Footer container className="backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 dark:bg-black/60 border-t border-gray-100 p-6 bottom-0 w-full mt-auto">
-            <div className="w-full flex flex-col md:flex-row justify-between items-center">
-                <Footer.Copyright by="Dhia Manai | Web Developer™" year={2024} />
-                <Footer.LinkGroup className="flex flex-wrap gap-4 mt-4 md:mt-0">
-                    <Footer.Link as="button" onClick={() => setOpenModal(true)} className="hover:underline">
+        <Footer container className="backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 dark:bg-black/60 border-t border-gray-100 dark:border-gray-800 p-4 sm:p-6 bottom-0 w-full mt-auto">
+            <div className="w-full flex flex-col md:flex-row justify-between items-center gap-3">
+                <Footer.Copyright by="Dhia Manai | Web Developer™" year={2024} className="text-gray-700 dark:text-gray-300" />
+                <Footer.LinkGroup className="flex flex-wrap gap-3 sm:gap-4 mt-2 md:mt-0">
+                    <Footer.Link as="button" onClick={() => setOpenModal(true)} className="hover:underline text-gray-700 dark:text-gray-300">
                     About
                     </Footer.Link>
-                    <Footer.Link as="button" onClick={() => setOpenModal2(true)} className="hover:underline">
+                    <Footer.Link as="button" onClick={() => setOpenModal2(true)} className="hover:underline text-gray-700 dark:text-gray-300">
                     Terms of Service
                     </Footer.Link>
-                    <Footer.Link as="button" onClick={() => setOpenModal3(true)} className="hover:underline">
+                    <Footer.Link as="button" onClick={() => setOpenModal3(true)} className="hover:underline text-gray-700 dark:text-gray-300">
                     Contact
                     </Footer.Link>
                 </Footer.LinkGroup>
@@ -35,7 +35,7 @@ const Footerr = () => {
                 <Modal.Header>About</Modal.Header>
                 <Modal.Body>
                     <div className="space-y-6">
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
                         Welcome to E-Shop, your go-to destination for online purchasing of high-quality electronic products. We are proud to provide you with a convenient, secure, and user-friendly shopping experience, offering the latest technological innovations at the best prices.
                         Our mission is to simplify your life by providing a wide range of carefully selected electronic products, from cutting-edge gadgets and home appliances to essential accessories.
                         By using our platform, you agree to our Terms of Use. If you do not agree with these terms, we kindly ask you to refrain from using our services. Your satisfaction is at the heart of our commitment, and we strive to meet your needs with professionalism and transparency.
@@ -53,7 +53,7 @@ const Footerr = () => {
                 <Modal.Header>Terms of Service</Modal.Header>
                 <Modal.Body>
                     <div className="space-y-6">
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
                         Welcome to E-Shop, your reference site for online purchasing of electronic products. By using this site, you agree to these Terms of Use. If you do not agree to these terms, please do not use our services.
                         </p>
                     </div>
@@ -68,10 +68,10 @@ const Footerr = () => {
                 <Modal.Header>Contact Us</Modal.Header>
                 <Modal.Body>
                     <div className="space-y-6">
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
                         We`d love to hear from you! Feel free to reach out to us using the form below or contact us directly at:
                         </p>
-                        <ul className="text-gray-500 dark:text-gray-400 list-disc pl-5">
+                        <ul className="text-gray-700 dark:text-gray-300 list-disc pl-5">
                             <li>Email: <a href="mailto:support@eshop.com" className="text-emerald-500 underline">support@eshop.com</a></li>
                             <li>Phone: <a href="tel:+123456789" className="text-emerald-500 underline">+216 53 517 392</a></li>
                             <li>Address: 123 E-Shop Street, Tunisia</li>

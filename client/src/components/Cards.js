@@ -16,11 +16,11 @@ const Cards = () => {
         <>
             {/* *********************************** */}
 
-            <section className="py-12 bg-white sm:py-16 lg:py-20">
+            <section className="py-12 bg-white dark:bg-black sm:py-16 lg:py-20">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-md mx-auto text-center">
-                        <h2 className="text-3xl font-semibold text-gray-900 sm:text-4xl">Our featured items</h2>
-                        <p className="mt-3 text-base leading-7 text-gray-600">Curated products crafted with care.</p>
+                        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white sm:text-4xl">Our featured items</h2>
+                        <p className="mt-3 text-base leading-7 text-gray-600 dark:text-gray-400">Curated products crafted with care.</p>
                     </div>
 
                    
@@ -34,20 +34,20 @@ const Cards = () => {
                                 transition: { staggerChildren: 0.06 }
                             }
                         }}
-                        className="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-6 lg:grid-cols-4"
+                        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 lg:mt-16"
                     >
                         {value.map((product) => (
                             <motion.div
                                 key={product.id}
                                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                                 whileHover={{ y: -4 }}
-                                className="relative group m-2 p-3 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                                className="relative group m-2 p-3 rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
                                 onClick={() => {
                                     setIsModalOpen(true);
                                     setProduct(product);
                                 }}
                             >
-                                <div className="relative overflow-hidden h-60 bg-gray-50 flex items-center justify-center rounded-xl">
+                                <div className="relative overflow-hidden h-60 bg-gray-50 dark:bg-gray-800 flex items-center justify-center rounded-xl">
                                     <img
                                         className="w-full h-full object-cover transition-transform duration-700 ease-out transform group-hover:scale-105"
                                         src={`http://localhost:3001/images/${product.image}`}
@@ -55,10 +55,10 @@ const Cards = () => {
                                     />
                                 </div>
                                 <div className="flex items-start justify-between mt-4">
-                                    <h3 className="text-sm font-medium text-gray-900 truncate">
+                                    <h3 className="text-sm font-medium text-gray-900 dark:text-white truncate">
                                         {product.model}
                                     </h3>
-                                    <p className="text-sm font-semibold text-gray-900">{product.price} TND</p>
+                                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{product.price} TND</p>
                                 </div>
                             </motion.div>
                         ))}

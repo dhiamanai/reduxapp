@@ -18,12 +18,12 @@ const ProductModal = ({ productt, onClose }) => {
     const totalPrice = price * quantity;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 transition-opacity duration-300">
-            <div className="bg-white mt-12 p-6 rounded-2xl w-11/12 max-w-3xl relative flex flex-col md:flex-row gap-6 shadow-lg transform scale-100 transition-transform duration-300">
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 transition-opacity duration-300">
+            <div className="bg-white dark:bg-gray-900 mt-12 p-6 rounded-2xl w-11/12 max-w-3xl relative flex flex-col md:flex-row gap-6 shadow-lg transform scale-100 transition-transform duration-300 border border-gray-100 dark:border-gray-800">
                 {/* Close Button */}
                 <button 
                     onClick={onClose} 
-                    className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold transition-transform transform hover:scale-110"
+                    className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-3xl font-bold transition-transform transform hover:scale-110"
                 >
                     ×
                 </button>
@@ -39,7 +39,7 @@ const ProductModal = ({ productt, onClose }) => {
 
                 {/* Product Content */}
                 <div className="w-full md:w-3/5 text-left flex flex-col justify-between">
-                    <h2 className="text-3xl font-bold mb-4 text-gray-800">{model}</h2>
+                    <h2 className="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100">{model}</h2>
 
                     {/* Dynamic Total Price */}
                     <div className="mb-6">
@@ -48,18 +48,18 @@ const ProductModal = ({ productt, onClose }) => {
 
                     {/* Quantity Selector */}
                     <div className="mb-6 flex items-center space-x-4">
-                        <h3 className="font-semibold text-lg text-gray-700">Quantity:</h3>
-                        <div className="flex items-center border border-gray-300 rounded-lg shadow-sm">
+                        <h3 className="font-semibold text-lg text-gray-700 dark:text-gray-300">Quantity:</h3>
+                        <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm">
                             <button 
                                 onClick={decreaseQuantity} 
-                                className="px-4 py-2 text-lg font-bold bg-gray-200 hover:bg-gray-300 rounded-l-lg transition-colors"
+                                className="px-4 py-2 text-lg font-bold bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-l-lg transition-colors"
                             >
                                 −
                             </button>
-                            <span className="px-6 text-lg font-medium">{quantity}</span>
+                            <span className="px-6 text-lg font-medium text-gray-800 dark:text-gray-200">{quantity}</span>
                             <button 
                                 onClick={increaseQuantity} 
-                                className="px-4 py-2 text-lg font-bold bg-gray-200 hover:bg-gray-300 rounded-r-lg transition-colors"
+                                className="px-4 py-2 text-lg font-bold bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-r-lg transition-colors"
                             >
                                 +
                             </button>

@@ -22,14 +22,14 @@ const Contact = () => {
     }, []);
     return (
        
-        <div className="mx-auto flex flex-row p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg mt-10">
+        <div className="mx-auto flex flex-col md:flex-row p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg mt-6 sm:mt-10">
 
-            <div className=' mx-auto flex flex-col items-center justify-center h-full'>
-                <img src={contactusImage} alt="My SVG Image" className="h-96 py-4 w-2/3" />
+            <div className='mx-auto flex flex-col items-center justify-center h-full w-full md:w-2/5'>
+                <img src={contactusImage} alt="My SVG Image" className="w-full max-w-md h-auto py-4" />
             </div>
 
-            <div className='w-2/4 mx-auto px-24'>     
-                <h2 className="text-2xl font-bold text-emerald-700 dark:text-gray-100 text-center">Contact Us</h2>
+            <div className='w-full md:w-3/5 mx-auto px-4 sm:px-8 md:px-12'>     
+                <h2 className="text-2xl sm:text-3xl font-bold text-emerald-700 dark:text-gray-100 text-center">Contact Us</h2>
                 <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-400 text-center mt-4">
         We’d love to hear from you! Feel free to reach out to us using the form below or contact us directly at:
                 </p>
