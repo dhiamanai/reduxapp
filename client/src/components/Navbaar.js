@@ -72,12 +72,11 @@ const Navbaar = () => {
                     Contact
                 </Link>
                 <Link
-                
                     className="relative flex items-center justify-center px-4 py-2"
                     to="/shop"
                 >
                     {items > 0 && (
-                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 transform flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                        <span className="absolute -top-0.5 -right-0.5 transform flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white font-medium">
                             {items}
                         </span>
                     )}
